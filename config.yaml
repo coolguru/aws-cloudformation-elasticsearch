@@ -6,9 +6,11 @@ variables:
         required: true
         type: string
     DOMAIN_NAME:
+        default: elasticsearch-domain
         required: true
         description: A name for the Amazon ES domain.
         type: string
+        overrides: null
     DEDICATED_MASTER_INSTANCE_COUNT:
         required: false
         description: Dedicated master instance count.
