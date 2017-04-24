@@ -68,7 +68,7 @@ coreo_aws_cloudformation "${STACK_NAME}" do
       }
    },
    "Resources":{
-      "MyCompanyElasticsearch":{
+      "CloudCoreoElasticsearch":{
          "Type":"AWS::Elasticsearch::Domain",
          "Properties":{
             "DomainName":{
