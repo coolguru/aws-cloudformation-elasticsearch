@@ -6,7 +6,7 @@ variables:
         required: true
         type: string
     DOMAIN_NAME:
-        default: elasticsearch-domain
+        default: mydomain
         required: true
         description: A name for the Amazon ES domain.
         type: string
