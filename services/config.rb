@@ -1,5 +1,5 @@
 coreo_aws_cloudformation "${STACK_NAME}" do
-  action :sustain
+  action :create
   policy_body ${POLICY_BODY}
   policy_url ${POLICY_URL}
   role_arn ${ROLE_ARN}
