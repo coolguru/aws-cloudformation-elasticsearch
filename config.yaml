@@ -11,6 +11,12 @@ variables:
         description: A name for the Amazon ES domain.
         type: string
         overrides: null
+    ELASTICSEARCH_VERSION:
+        default: "5.1"
+        required: true
+        description: Elasticsearch version.
+        type: string
+        overrides: null
     DEDICATED_MASTER_INSTANCE_COUNT:
         required: false
         description: Dedicated master instance count.
