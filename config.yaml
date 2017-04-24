@@ -12,31 +12,38 @@ variables:
     DEDICATED_MASTER_INSTANCE_COUNT:
         required: false
         description: Dedicated master instance count.
-        type: string
+        type: number
+        default: 3
     DEDICATED_MASTER_INSTANCE_TYPE:
+        default: "t2.micro.elasticsearch"
         required: false
         type: string
         description: Dedicated master instance type.
     MASTER_INSTANCE_COUNT:
+        default: 2
         required: false
         description: Instance count.
-        type: string
+        type: number
     MASTER_INSTANCE_TYPE:
+        default: "t2.micro.elasticsearch"
         required: false
         description: Instance type.
         type: string
     EBS_VOLUME_SIZE:
+        default: 20
         required: false
         description: EBS volume size.
-        type: string
+        type: number
     EBS_VOLUME_IOPS:
+        default: 20
         required: false
         description: EBS volume iops.
-        type: string
+        type: number
     SNAPSHOT_START_HOUR:
+        default: 0
         required: false
         description: Snapshot start hour.
-        type: string
+        type: number
     DISABLE_ROLLBACK:
         description: Set to true to disable rollback of the stack if stack creation failed.
         required: false
