@@ -1,7 +1,7 @@
 variables:
     STACK_NAME:
-        default: sqs-stack
-        description: SQS Cloudformation stack name
+        default: elasticsearch-stack
+        description: ElasticSearch Cloudformation stack name
         overrides: null
         required: true
         type: string

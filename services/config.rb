@@ -25,7 +25,8 @@ coreo_aws_cloudformation "${STACK_NAME}" do
    "Description":"AWS Elasticsearch Service",
    "Parameters":{
       "DomainName":{
-         "Type":"String"
+         "Type":"String",
+         "Default":"mydomain"
       },
       "DedicatedMasterInstanceCount":{
          "Type":"String",
@@ -68,7 +69,7 @@ coreo_aws_cloudformation "${STACK_NAME}" do
       }
    },
    "Resources":{
-      "CloudCoreoElasticsearch":{
+      "Elasticsearch":{
          "Type":"AWS::Elasticsearch::Domain",
          "Properties":{
             "DomainName":{
