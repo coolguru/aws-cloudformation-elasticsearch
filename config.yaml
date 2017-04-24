@@ -35,7 +35,7 @@ variables:
         description: EBS volume size.
         type: number
     EBS_VOLUME_IOPS:
-        default: 20
+        default: 0
         required: false
         description: EBS volume iops.
         type: number
