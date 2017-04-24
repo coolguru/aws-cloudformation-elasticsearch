@@ -8,7 +8,7 @@ coreo_aws_cloudformation "${STACK_NAME}" do
   timeout_in_minutes ${TIMEOUT_IN_MINUTES}
   capabilities ${CAPABILTIES}
   notification_arns ${NOTIFICATION_ARNS}
-  parameters [{ :DomainName => "${DOMAIN_NAME}" },
+  parameters [{ :DomainName => ${DOMAIN_NAME} },
               { :ElasticsearchVersion => "${ELASTICSEARCH_VERSION}"}, 
               { :DedicatedMasterInstanceCount => "${DEDICATED_MASTER_INSTANCE_COUNT}" },
               { :DedicatedMasterInstanceType => "${DEDICATED_MASTER_INSTANCE_TYPE}" },
