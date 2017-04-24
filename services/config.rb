@@ -9,7 +9,7 @@ coreo_aws_cloudformation "${STACK_NAME}" do
   capabilities ${CAPABILTIES}
   notification_arns ${NOTIFICATION_ARNS}
   parameters [{ :DomainName => "${DOMAIN_NAME}" },
-              { :ElasticsearchVersion => "${ELASTICSEARCH_VERSION}"} 
+              { :ElasticsearchVersion => "${ELASTICSEARCH_VERSION}"}, 
               { :DedicatedMasterInstanceCount => "${DEDICATED_MASTER_INSTANCE_COUNT}" },
               { :DedicatedMasterInstanceType => "${DEDICATED_MASTER_INSTANCE_TYPE}" },
               { :MasterInstanceCount => "${MASTER_INSTANCE_COUNT}" },
