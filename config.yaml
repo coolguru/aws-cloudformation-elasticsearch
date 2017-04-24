@@ -6,11 +6,8 @@ variables:
         required: true
         type: string
     DOMAIN_NAME:
-        default: mydomain
         required: true
         description: A name for the Amazon ES domain.
-        type: string
-        overrides: null
     ELASTICSEARCH_VERSION:
         default: "5.1"
         required: true
@@ -23,7 +20,7 @@ variables:
         type: number
         default: 3
     DEDICATED_MASTER_INSTANCE_TYPE:
-        default: "t2.micro.elasticsearch"
+        default: "m4.large.elasticsearch"
         required: false
         type: string
         description: Dedicated master instance type.
@@ -33,7 +30,7 @@ variables:
         description: Instance count.
         type: number
     MASTER_INSTANCE_TYPE:
-        default: "t2.micro.elasticsearch"
+        default: "m4.large.elasticsearch"
         required: false
         description: Instance type.
         type: string

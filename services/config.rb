@@ -39,9 +39,8 @@ coreo_aws_cloudformation "${STACK_NAME}" do
       },
       "DedicatedMasterInstanceType":{
          "Type":"String",
-         "Default":"t2.micro.elasticsearch",
+         "Default":"m4.large.elasticsearch",
          "AllowedValues":[
-            "t2.micro.elasticsearch",
             "t2.small.elasticsearch",
             "m3.medium.elasticsearch",
             "m4.large.elasticsearch"
@@ -53,11 +52,11 @@ coreo_aws_cloudformation "${STACK_NAME}" do
       },
       "MasterInstanceType":{
          "Type":"String",
-         "Default":"t2.micro.elasticsearch",
+         "Default":"m4.large.elasticsearch",
          "AllowedValues":[
-            "t2.micro.elasticsearch",
             "t2.small.elasticsearch",
-            "m3.medium.elasticsearch"
+            "m3.medium.elasticsearch",
+            "m4.large.elasticsearch"
          ]
       },
       "EbsVolumeSize":{
