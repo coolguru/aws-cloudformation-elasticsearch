@@ -1,5 +1,5 @@
 coreo_aws_cloudformation "${STACK_NAME}" do
-  action :create
+  action :sustain
   policy_body ${POLICY_BODY}
   policy_url ${POLICY_URL}
   role_arn ${ROLE_ARN}
@@ -16,7 +16,8 @@ coreo_aws_cloudformation "${STACK_NAME}" do
               { :MasterInstanceType => "${MASTER_INSTANCE_TYPE}" },
               { :EbsVolumeSize => "${EBS_VOLUME_SIZE}" },
               { :EbsVolumeIops => "${EBS_VOLUME_IOPS}" },
-              { :SnapshotStartHour => "${SNAPSHOT_START_HOUR}" }
+              { :SnapshotStartHour => "${SNAPSHOT_START_HOUR}" },
+              { :Arn => "PLAN::cloud_account_arn" }
             ]
 
   tags ${STACK_TAGS}
@@ -119,7 +120,9 @@ coreo_aws_cloudformation "${STACK_NAME}" do
                   {
                      "Effect":"Allow",
                      "Principal":{
-                        "AWS":"*"
+                        "AWS":{
+                          "Ref":"Arn"
+                        }
                      },
                      "Action":"es:*",
                      "Resource":"*"
