@@ -171,7 +171,7 @@ coreo_uni_util_jsrunner "extract-es-url" do
   json_input 'COMPOSITE::coreo_aws_cloudformation.${STACK_NAME}.stack_output'
   function <<-EOH
    let es_url = ''
-    if (json_input) {
+    if (json_input && json_input['URL']) {
         es_url = json_input['URL']
     }
     callback(es_url)
