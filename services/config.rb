@@ -17,7 +17,7 @@ coreo_aws_cloudformation "${STACK_NAME}" do
               { :EbsVolumeSize => "${EBS_VOLUME_SIZE}" },
               { :EbsVolumeIops => "${EBS_VOLUME_IOPS}" },
               { :SnapshotStartHour => "${SNAPSHOT_START_HOUR}" },
-              { :Arn => "${PLAN::cloud_account_arn}" }
+              { :Arn => "PLAN::cloud_account_arn" }
             ]
 
   tags ${STACK_TAGS}
@@ -127,7 +127,7 @@ coreo_aws_cloudformation "${STACK_NAME}" do
                           "Fn::Join": [
                             ":",
                             [
-                              {"Ref":"Arn"}
+                              "PLAN::cloud_account_arn"
                               "root"
                             ]
                           ]
