@@ -27,8 +27,7 @@ coreo_aws_cloudformation "${STACK_NAME}" do
    "Description":"AWS Elasticsearch Service",
    "Parameters":{
       "DomainName":{
-         "Type":"String",
-         "Default":"mydomain"
+         "Type":"String"
       },
       "ElasticsearchVersion":{
          "Type":"String",
@@ -71,6 +70,10 @@ coreo_aws_cloudformation "${STACK_NAME}" do
       "SnapshotStartHour":{
          "Type":"String",
          "Default":"0"
+      },
+      "Arn":{
+         "Type":"String"
+         "Description" : "Name of an account and user that can assume permissions within this account)"
       }
    },
    "Resources":{
@@ -121,7 +124,13 @@ coreo_aws_cloudformation "${STACK_NAME}" do
                      "Effect":"Allow",
                      "Principal":{
                         "AWS":{
-                          "Ref":"Arn"
+                          "Fn::Join": [
+                            ":",
+                            [
+                              {"Ref":"Arn"}
+                              "root"
+                            ]
+                          ]
                         }
                      },
                      "Action":"es:*",
