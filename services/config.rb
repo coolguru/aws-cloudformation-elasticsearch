@@ -123,15 +123,7 @@ coreo_aws_cloudformation "${STACK_NAME}" do
                   {
                      "Effect":"Allow",
                      "Principal":{
-                        "AWS":{
-                          "Fn::Join": [
-                            ":",
-                            [
-                              "PLAN::cloud_account_arn"
-                              "root"
-                            ]
-                          ]
-                        }
+                        "AWS":"PLAN::cloud_account_arn"
                      },
                      "Action":"es:*",
                      "Resource":"*"
