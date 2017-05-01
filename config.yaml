@@ -5,88 +5,88 @@ variables:
         overrides: null
         required: true
         type: string
-    DOMAIN_NAME:
+    ES_DOMAIN_NAME:
         required: true
         description: A name for the Amazon ES domain.
-    ELASTICSEARCH_VERSION:
+    ES_VERSION:
         default: "5.1"
-        required: true
+        required: false
         description: Elasticsearch version.
         type: string
         overrides: null
-    DEDICATED_MASTER_INSTANCE_COUNT:
+    ES_DEDICATED_MASTER_INSTANCE_COUNT:
         required: false
         description: Dedicated master instance count.
         type: number
         default: 3
-    DEDICATED_MASTER_INSTANCE_TYPE:
+    ES_DEDICATED_MASTER_INSTANCE_TYPE:
         default: "m4.large.elasticsearch"
         required: false
         type: string
         description: Dedicated master instance type.
-    MASTER_INSTANCE_COUNT:
+    ES_MASTER_INSTANCE_COUNT:
         default: 2
         required: false
         description: Instance count.
         type: number
-    MASTER_INSTANCE_TYPE:
+    ES_MASTER_INSTANCE_TYPE:
         default: "m4.large.elasticsearch"
         required: false
         description: Instance type.
         type: string
-    EBS_VOLUME_SIZE:
+    ES_EBS_VOLUME_SIZE:
         default: 20
         required: false
         description: EBS volume size.
         type: number
-    EBS_VOLUME_IOPS:
+    ES_EBS_VOLUME_IOPS:
         default: 0
         required: false
         description: EBS volume iops.
         type: number
-    SNAPSHOT_START_HOUR:
+    ES_SNAPSHOT_START_HOUR:
         default: 0
         required: false
         description: Snapshot start hour.
         type: number
-    DISABLE_ROLLBACK:
+    CFN_DISABLE_ROLLBACK:
         description: Set to true to disable rollback of the stack if stack creation failed.
         required: false
         type: string
-    ON_FAILURE:
+    CFN_ON_FAILURE:
         default: ROLLBACK
         description: "Action to be taken if stack creation fails. This must be one of: DO_NOTHING, ROLLBACK, or DELETE. Conflicts with disable_rollback."
         required: false
         type: string
-    TIMEOUT_IN_MINUTES:
+    CFN_TIMEOUT_IN_MINUTES:
         default: 60
         description: The amount of time that can pass before the stack status becomes CREATE_FAILED.
         required: false
         type: number
-    CAPABILTIES:
+    CFN_CAPABILTIES:
         default:
             - CAPABILITY_IAM
         description: A list of capabilities. Currently, the only valid value is CAPABILITY_IAM.
         required: false
         type: array
-    NOTIFICATION_ARNS:
+    CFN_NOTIFICATION_ARNS:
         description: The Simple Notification Service (SNS) topic ARNs to publish stack related events.
         required: false
         type: array
-    POLICY_URL:
+    CFN_POLICY_URL:
         description: Location of a file containing the stack policy. Conflicts w/ POLICY_BODY.
         required: false
         type: string
-    POLICY_BODY:
+    CFN_POLICY_BODY:
         description: Structure containing the stack policy body. Conflicts w/ POLICY_URL.
         required: false
         type: string
-    ROLE_ARN:
+    CFN_ROLE_ARN:
         description: The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM) role that AWS CloudFormation assumes to update the stack.
         required: false
         type: string
-    STACK_TAGS:
+    CFN_TAGS:
         required: false
-        description: tags to apply to the stack
+        description: tags to apply to the cloudformation stack
         type: array
         default:

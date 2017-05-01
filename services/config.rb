@@ -1,25 +1,25 @@
 coreo_aws_cloudformation "${STACK_NAME}" do
   action :sustain
-  policy_body ${POLICY_BODY}
-  policy_url ${POLICY_URL}
-  role_arn ${ROLE_ARN}
-  on_failure "${ON_FAILURE}"
-  disable_rollback ${DISABLE_ROLLBACK}
-  timeout_in_minutes ${TIMEOUT_IN_MINUTES}
-  capabilities ${CAPABILTIES}
-  notification_arns ${NOTIFICATION_ARNS}
-  parameters [{ :DomainName => "${DOMAIN_NAME}" },
-              { :ElasticsearchVersion => "${ELASTICSEARCH_VERSION}"}, 
-              { :DedicatedMasterInstanceCount => "${DEDICATED_MASTER_INSTANCE_COUNT}" },
-              { :DedicatedMasterInstanceType => "${DEDICATED_MASTER_INSTANCE_TYPE}" },
-              { :MasterInstanceCount => "${MASTER_INSTANCE_COUNT}" },
-              { :MasterInstanceType => "${MASTER_INSTANCE_TYPE}" },
-              { :EbsVolumeSize => "${EBS_VOLUME_SIZE}" },
-              { :EbsVolumeIops => "${EBS_VOLUME_IOPS}" },
-              { :SnapshotStartHour => "${SNAPSHOT_START_HOUR}" }
+  policy_body ${CFN_POLICY_BODY}
+  policy_url ${CFN_POLICY_URL}
+  role_arn ${CFN_ROLE_ARN}
+  on_failure "${CFN_ON_FAILURE}"
+  disable_rollback ${CFN_DISABLE_ROLLBACK}
+  timeout_in_minutes ${CFN_TIMEOUT_IN_MINUTES}
+  capabilities ${CFN_CAPABILTIES}
+  notification_arns ${CFN_NOTIFICATION_ARNS}
+  parameters [{ :DomainName => "${ES_DOMAIN_NAME}" },
+              { :ElasticsearchVersion => "${ES_VERSION}"}, 
+              { :DedicatedMasterInstanceCount => "${ES_DEDICATED_MASTER_INSTANCE_COUNT}" },
+              { :DedicatedMasterInstanceType => "${ES_DEDICATED_MASTER_INSTANCE_TYPE}" },
+              { :MasterInstanceCount => "${ES_MASTER_INSTANCE_COUNT}" },
+              { :MasterInstanceType => "${ES_MASTER_INSTANCE_TYPE}" },
+              { :EbsVolumeSize => "${ES_EBS_VOLUME_SIZE}" },
+              { :EbsVolumeIops => "${ES_EBS_VOLUME_IOPS}" },
+              { :SnapshotStartHour => "${ES_SNAPSHOT_START_HOUR}" }
             ]
 
-  tags ${STACK_TAGS}
+  tags ${CFN_TAGS}
   template_body <<-'EOF'
 {
    "AWSTemplateFormatVersion":"2010-09-09",
@@ -145,7 +145,30 @@ coreo_aws_cloudformation "${STACK_NAME}" do
             ]
          }
       }
-   }
+   },
+   "Outputs": {
+    "Name": {
+      "Description": "Elasticsearch domain name",
+      "Value": {"Ref": "ElasticsearchDomain"}
+    },
+    "Domain": {
+      "Description": "Elasticsearch domain endpoint",
+      "Value": {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]}
+    },
+    "URL" : {
+      "Value" : {"Fn::Join": ["", [
+        "https://", {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]}
+      ]]},
+      "Description" : "Elasticsearch domain URL"
+    }
+  }
 }
 EOF
+end
+
+coreo_uni_util_jsrunner "extract-es-url" do
+  action :run
+  json_input '{"stack_output":"COMPOSITE::coreo_aws_cloudformation.${STACK_NAME}.stack_output"}'
+  function <<-EOH
+  EOH
 end
