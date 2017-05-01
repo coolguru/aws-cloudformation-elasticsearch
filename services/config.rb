@@ -72,7 +72,7 @@ coreo_aws_cloudformation "${STACK_NAME}" do
       }
    },
    "Resources":{
-      "ElasticsearchDomain":{
+      "Elasticsearch":{
          "Type":"AWS::Elasticsearch::Domain",
          "Properties":{
             "DomainName":{
@@ -149,15 +149,15 @@ coreo_aws_cloudformation "${STACK_NAME}" do
    "Outputs": {
     "Name": {
       "Description": "Elasticsearch domain name",
-      "Value": {"Ref": "ElasticsearchDomain"}
+      "Value": {"Ref": "Elasticsearch"}
     },
     "Domain": {
       "Description": "Elasticsearch domain endpoint",
-      "Value": {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]}
+      "Value": {"Fn::GetAtt": ["Elasticsearch", "DomainEndpoint"]}
     },
     "URL" : {
       "Value" : {"Fn::Join": ["", [
-        "https://", {"Fn::GetAtt": ["ElasticsearchDomain", "DomainEndpoint"]}
+        "https://", {"Fn::GetAtt": ["Elasticsearch", "DomainEndpoint"]}
       ]]},
       "Description" : "Elasticsearch domain URL"
     }
