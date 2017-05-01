@@ -122,7 +122,7 @@ coreo_aws_cloudformation "${STACK_NAME}" do
                           "Fn::Join": [
                             ":",
                             [
-                              "arn:aws:iam::",
+                              "arn:aws:iam:",
                               "PLAN::cloud_account_id",
                               "root"
                             ]
