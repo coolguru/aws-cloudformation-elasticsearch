@@ -16,8 +16,7 @@ coreo_aws_cloudformation "${STACK_NAME}" do
               { :MasterInstanceType => "${MASTER_INSTANCE_TYPE}" },
               { :EbsVolumeSize => "${EBS_VOLUME_SIZE}" },
               { :EbsVolumeIops => "${EBS_VOLUME_IOPS}" },
-              { :SnapshotStartHour => "${SNAPSHOT_START_HOUR}" },
-              { :Arn => "PLAN::cloud_account_arn" }
+              { :SnapshotStartHour => "${SNAPSHOT_START_HOUR}" }
             ]
 
   tags ${STACK_TAGS}
@@ -70,10 +69,6 @@ coreo_aws_cloudformation "${STACK_NAME}" do
       "SnapshotStartHour":{
          "Type":"String",
          "Default":"0"
-      },
-      "Arn":{
-         "Type":"String",
-         "Description" : "Name of an account and user that can assume permissions within this account)"
       }
    },
    "Resources":{
@@ -123,7 +118,15 @@ coreo_aws_cloudformation "${STACK_NAME}" do
                   {
                      "Effect":"Allow",
                      "Principal":{
-                        "AWS": "PLAN::cloud_account_arn"
+                        "AWS":{
+                          "Fn::Join": [
+                            ":",
+                            [
+                              "PLAN::cloud_account_arn",
+                              "root"
+                            ]
+                          ]
+                        }
                      },
                      "Action":"es:*",
                      "Resource":"*"
