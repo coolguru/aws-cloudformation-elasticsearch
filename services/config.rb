@@ -72,7 +72,7 @@ coreo_aws_cloudformation "${STACK_NAME}" do
          "Default":"0"
       },
       "Arn":{
-         "Type":"String"
+         "Type":"String",
          "Description" : "Name of an account and user that can assume permissions within this account)"
       }
    },
@@ -123,7 +123,15 @@ coreo_aws_cloudformation "${STACK_NAME}" do
                   {
                      "Effect":"Allow",
                      "Principal":{
-                        "AWS":"PLAN::cloud_account_arn"
+                        "AWS":{
+                          "Fn::Join": [
+                            ":",
+                            [
+                              "PLAN::cloud_account_arn"
+                              "root"
+                            ]
+                          ]
+                        }
                      },
                      "Action":"es:*",
                      "Resource":"*"
