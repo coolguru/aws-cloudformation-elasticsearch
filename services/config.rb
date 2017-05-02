@@ -10,10 +10,10 @@ coreo_aws_cloudformation "${STACK_NAME}" do
   notification_arns ${CFN_NOTIFICATION_ARNS}
   parameters [{ :DomainName => "${ES_DOMAIN_NAME}" },
               { :ElasticsearchVersion => "${ES_VERSION}"}, 
-              { :DedicatedMasterInstanceCount => "${ES_DEDICATED_MASTER_INSTANCE_COUNT}" },
-              { :DedicatedMasterInstanceType => "${ES_DEDICATED_MASTER_INSTANCE_TYPE}" },
-              { :MasterInstanceCount => "${ES_MASTER_INSTANCE_COUNT}" },
-              { :MasterInstanceType => "${ES_MASTER_INSTANCE_TYPE}" },
+              { :DedicatedMasterCount => "${ES_DEDICATED_MASTER_COUNT}" },
+              { :DedicatedMasterType => "${ES_DEDICATED_MASTER_TYPE}" },
+              { :InstanceCount => "${ES_INSTANCE_COUNT}" },
+              { :InstanceType => "${ES_INSTANCE_TYPE}" },
               { :EbsVolumeSize => "${ES_EBS_VOLUME_SIZE}" },
               { :EbsVolumeIops => "${ES_EBS_VOLUME_IOPS}" },
               { :SnapshotStartHour => "${ES_SNAPSHOT_START_HOUR}" }
@@ -26,30 +26,31 @@ coreo_aws_cloudformation "${STACK_NAME}" do
    "Description":"AWS Elasticsearch Service",
    "Parameters":{
       "DomainName":{
-         "Type":"String"
+         "Type":"String",
+          "Default":"esdomain"
       },
       "ElasticsearchVersion":{
          "Type":"String",
          "Default":"5.1"
       },
-      "DedicatedMasterInstanceCount":{
+      "DedicatedMasterCount":{
          "Type":"String",
-         "Default":"3"
+         "Default":"2"
       },
-      "DedicatedMasterInstanceType":{
+      "DedicatedMasterType":{
          "Type":"String",
-         "Default":"m4.large.elasticsearch",
+         "Default":"m3.medium.elasticsearch",
          "AllowedValues":[
             "t2.small.elasticsearch",
             "m3.medium.elasticsearch",
             "m4.large.elasticsearch"
          ]
       },
-      "MasterInstanceCount":{
+      "InstanceCount":{
          "Type":"String",
-         "Default":"2"
+         "Default":"4"
       },
-      "MasterInstanceType":{
+      "InstanceType":{
          "Type":"String",
          "Default":"m4.large.elasticsearch",
          "AllowedValues":[
@@ -60,15 +61,15 @@ coreo_aws_cloudformation "${STACK_NAME}" do
       },
       "EbsVolumeSize":{
          "Type":"Number",
-         "Default":20
+         "Default":100
       },
       "EbsVolumeIops":{
          "Type":"Number",
          "Default":0
       },
       "SnapshotStartHour":{
-         "Type":"String",
-         "Default":"0"
+         "Type":"Number",
+         "Default":0
       }
    },
    "Resources":{
@@ -83,18 +84,18 @@ coreo_aws_cloudformation "${STACK_NAME}" do
             },
             "ElasticsearchClusterConfig":{
                "DedicatedMasterEnabled":"true",
-               "InstanceCount":{
-                  "Ref":"MasterInstanceCount"
-               },
                "ZoneAwarenessEnabled":"true",
+               "InstanceCount":{
+                  "Ref":"InstanceCount"
+               },
                "InstanceType":{
-                  "Ref":"MasterInstanceType"
+                  "Ref":"InstanceType"
                },
                "DedicatedMasterType":{
-                  "Ref":"DedicatedMasterInstanceType"
+                  "Ref":"DedicatedMasterType"
                },
                "DedicatedMasterCount":{
-                  "Ref":"DedicatedMasterInstanceCount"
+                  "Ref":"DedicatedMasterCount"
                }
             },
             "EBSOptions":{

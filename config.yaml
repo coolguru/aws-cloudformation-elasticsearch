@@ -6,43 +6,44 @@ variables:
         required: true
         type: string
     ES_DOMAIN_NAME:
-        required: true
+        default: "coreoes"
+        required: false
         description: A name for the Amazon ES domain.
+        type: string
     ES_VERSION:
         default: "5.1"
         required: false
-        description: Elasticsearch version.
+        description: The version of Elasticsearch to use, such as 5.1.
         type: string
-        overrides: null
-    ES_DEDICATED_MASTER_INSTANCE_COUNT:
+    ES_DEDICATED_MASTER_COUNT:
         required: false
         description: Dedicated master instance count.
         type: number
-        default: 3
-    ES_DEDICATED_MASTER_INSTANCE_TYPE:
-        default: "m4.large.elasticsearch"
+        default: 2
+    ES_DEDICATED_MASTER_TYPE:
+        default: "m3.medium.elasticsearch"
         required: false
         type: string
-        description: Dedicated master instance type.
-    ES_MASTER_INSTANCE_COUNT:
-        default: 2
+        description: Dedicated master instance type. The hardware configuration of the computer that hosts the dedicated master node, such as m3.medium.elasticsearch. 
+    ES_INSTANCE_COUNT:
+        default: 4
         required: false
-        description: Instance count.
+        description: The number of data nodes (instances) to use in the Amazon ES domain.
         type: number
-    ES_MASTER_INSTANCE_TYPE:
+    ES_INSTANCE_TYPE:
         default: "m4.large.elasticsearch"
         required: false
-        description: Instance type.
+        description: The instance type for your data nodes, such as m3.medium.elasticsearch.
         type: string
     ES_EBS_VOLUME_SIZE:
-        default: 20
+        default: 100
         required: false
-        description: EBS volume size.
+        description: The size of the EBS volume for each data node.
         type: number
     ES_EBS_VOLUME_IOPS:
         default: 0
         required: false
-        description: EBS volume iops.
+        description: The number of I/O operations per second (IOPS) that the volume supports.
         type: number
     ES_SNAPSHOT_START_HOUR:
         default: 0
@@ -66,7 +67,7 @@ variables:
     CFN_CAPABILTIES:
         default:
             - CAPABILITY_IAM
-        description: A list of capabilities. Currently, the only valid value is CAPABILITY_IAM.
+        description: A list of capabilities.
         required: false
         type: array
     CFN_NOTIFICATION_ARNS:
