@@ -23,6 +23,6 @@ coreo_aws_ec2_instance "test" do
          }
         ]
   environment_variables [
-                         COMPOSITE::coreo_uni_util_jsrunner.extract-es-url.return
+                         'COMPOSITE::coreo_uni_util_jsrunner.extract-es-url.return''
                         ]
 end
