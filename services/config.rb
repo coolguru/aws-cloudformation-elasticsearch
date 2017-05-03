@@ -1,6 +1,6 @@
 coreo_uni_util_jsrunner "extract-es-url" do
   action :run
-  json_input ''
+  json_input '{"Domain":"search-guru-s5yt7oluodkg3a2r3ahjjc3pva.us-east-1.es.amazonaws.com","URL":"https://search-guru-s5yt7oluodkg3a2r3ahjjc3pva.us-east-1.es.amazonaws.com","Name":"guru"}'
   function <<-EOH
    let es_url = 'https://search-coreoes-nxy33iqpr46i26hlxnjc6yz7ga.us-east-1.es.amazonaws.com'
     callback(es_url)
